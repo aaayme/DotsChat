@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DotsChat - Let's Chat Together</title>
+<!--  WebSite Icon-->
+    <link rel="icon" type="image/png" href="logo.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="style.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">
+        <img class="logo-icon" src="logo.png" alt="DotsChat Logo">
+        <div class="logo-text">DotsChat</div>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#download">Download</a></li>
+          <li><a href="#version-log">Version Log</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="hero" id="home">
+         <img src="logo.png" alt="DotsChat Logo" class="app-logo">
+      <h1>Let's Chat Together</h1>
+      <p>Connect with friends and family through secure, email-based chat with image sharing capabilities. Available now on Windows and Android.</p>
+
+<div class="download-badges" id="download">
+  <!-- Android -->
+  <a href="DotsChat.apk" download class="badge" style="text-decoration:none; color:inherit;">
+    <i class="fab fa-android"></i>
+    <div class="badge-text">
+      <span>AVAILABLE FOR</span>
+      <span>Android</span>
+    </div>
+  </a>
+
+  <!-- Windows -->
+  <a href="DotsChat.rar" download class="badge" style="text-decoration:none; color:inherit;">
+    <i class="fab fa-windows"></i>
+    <div class="badge-text">
+      <span>AVAILABLE FOR</span>
+      <span>Windows</span>
+    </div>
+  </a>
+</div>
+    </section>
+
+    <section class="features" id="features">
+      <h2 class="section-title">App Features</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-lock"></i>
+          </div>
+          <h3>Secure Email Login</h3>
+          <p>Protect your conversations with secure email-based authentication.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-image"></i>
+          </div>
+          <h3>Image Sharing</h3>
+          <p>Share moments instantly with high-quality image sharing capabilities.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-comments"></i>
+          </div>
+          <h3>Real-time Chat</h3>
+          <p>Enjoy seamless real-time messaging with friends and groups.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-mobile-alt"></i>
+          </div>
+          <h3>Multi-Platform</h3>
+          <p>Available on Android and Windows for chatting anywhere.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="version-log" id="version-log">
+      <h2 class="section-title">Version History</h2>
+
+      <div class="version-card">
+        <div class="version-header">
+          <h3 class="version-title">Version 1.0.0+2</h3>
+          <span class="version-date">Released: June 2023</span>
+        </div>
+        <ul class="version-features">
+          <li>Initial release of DotsChat</li>
+          <li>Email-based account registration and login</li>
+          <li>Real-time text messaging</li>
+          <li>Image sharing capability</li>
+          <li>Multi-platform support (Android, Windows)</li>
+        </ul>
+      </div>
+
+      <div class="version-card">
+        <div class="version-header">
+          <h3 class="version-title">Version 0.9.0</h3>
+          <span class="version-date">Released: May 2023</span>
+        </div>
+        <ul class="version-features">
+          <li>Beta testing release</li>
+          <li>Basic chat functionality</li>
+          <li>Contact synchronization</li>
+          <li>UI improvements</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+<section id="server-status" style="display:flex; flex-direction:column; align-items:center; justify-content:center; padding:40px;">
+  <h2 style="margin-bottom:20px;">Server Status</h2>
+  <div id="status-circle" style="width:30px; height:30px; border-radius:50%; background-color:gray;"></div>
+  <p id="status-text" style="margin-top:15px; font-size:18px; font-weight:bold;">Checking...</p>
+</section>
+
+<script>
+  async function checkServerStatus() {
+    const statusCircle = document.getElementById("status-circle");
+    const statusText = document.getElementById("status-text");
+
+    try {
+      const response = await fetch("https://aaayme.zapto.org", { method: "GET" });
+      console.log(response);
+      if (response.ok) {
+        statusCircle.style.backgroundColor = "green";
+        statusText.textContent = "Server is UP";
+        statusText.style.color = "green";
+      } else {
+        statusCircle.style.backgroundColor = "orange";
+        statusText.textContent = "Server error (" + response.status + ")";
+        statusText.style.color = "orange";
+      }
+    } catch (error) {
+      console.log(error);
+      statusCircle.style.backgroundColor = "red";
+      statusText.textContent = "Server is DOWN";
+      statusText.style.color = "red";
+    }
+  }
+
+  // Run on load
+  checkServerStatus();
+
+  // Re-check every 30 seconds
+  setInterval(checkServerStatus, 30000);
+</script>
+
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Support</a>
+        <a href="#">Contact Us</a>
+      </div>
+      <div class="copyright">
+        &copy; 2023 DotsChat. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('nav a').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+
+        window.scrollTo({
+          top: targetElement.offsetTop - 20,
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // Simple animation for feature cards on scroll
+    const featureCards = document.querySelectorAll('.feature-card');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = 1;
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    featureCards.forEach(card => {
+      card.style.opacity = 0;
+      card.style.transform = 'translateY(20px)';
+      card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      observer.observe(card);
+    });
+  </script>
+</body>
+</html>
