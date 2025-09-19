@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DotsChat - Version History</title>
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="style.css" rel="stylesheet">
+</head>
+<body>
+  <div id="header-container"></div>
+
+  <div class="container">
+    <section class="version-log">
+      <h2 class="section-title">Version History</h2>
+      <div id="version-container" class="version-container"></div>
+    </section>
+  </div>
+
+  <div id="footer-container"></div>
+
+  <script src="header-footer.js"></script>
+  <script src="version-data.js"></script>
+  <script src="script.js"></script>
+  <script>
+    // Function to render version logs
+    function renderVersionLogs() {
+      const container = document.getElementById('version-container');
+
+      versionData.forEach(version => {
+        const versionCard = document.createElement('div');
+        versionCard.className = 'version-card';
+
+        versionCard.innerHTML = `
+          <div class="version-header">
+            <h3 class="version-title">${version.title}</h3>
+            <span class="version-date">Released: ${version.date}</span>
+          </div>
+          <ul class="version-features">
+            ${version.features.map(feature => `<li>${feature}</li>`).join('')}
+          </ul>
+        `;
+
+        container.appendChild(versionCard);
+      });
+    }
+
+    // Render logs when page loads
+    document.addEventListener('DOMContentLoaded', renderVersionLogs);
+  </script>
+</body>
+</html>
