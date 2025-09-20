@@ -1,6 +1,15 @@
 // Version data for logs page
 const versionData = [
   {
+    title: "Version 1.0.6",
+    date: "Sep 2025",
+    features: [
+      "Fixed forget password issue",
+      "Fixed empty home when use does not have new messages",
+      "General improvements"
+    ]
+  },
+  {
     title: "Version 1.0.5",
     date: "Sep 2025",
     features: [
