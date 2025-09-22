@@ -187,3 +187,41 @@ const screenshotData = [
   requestAnimationFrame(() => setTimeout(applyVClasses, 50));
 });
 
+// Video Player Functionality (for cloud storage option only)
+function initVideoPlayer() {
+  const video = document.querySelector('.app-video-player');
+  const overlay = document.querySelector('.video-overlay');
+  const playButton = document.querySelector('.play-button');
+
+  // Only initialize if using cloud storage video
+  if (!video || !overlay || !playButton) return;
+
+  // Play video when overlay is clicked
+  overlay.addEventListener('click', function() {
+    video.play();
+    overlay.classList.add('hidden');
+  });
+
+  // Play button click
+  playButton.addEventListener('click', function(e) {
+    e.stopPropagation();
+    video.play();
+    overlay.classList.add('hidden');
+  });
+
+  // Show overlay when video ends
+  video.addEventListener('ended', function() {
+    overlay.classList.remove('hidden');
+  });
+
+  // Pause video when it's not in viewport
+  const videoObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting && !video.paused) {
+        video.pause();
+      }
+    });
+  }, { threshold: 0.5 });
+
+  videoObserver.observe(video);
+}
